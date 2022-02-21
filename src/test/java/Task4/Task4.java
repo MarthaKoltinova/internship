@@ -26,9 +26,8 @@ public class Task4 extends BaseTest {
         System.out.println(driver.findElement(By.id("result-stats")).getText());
         driver.findElement(By.linkText("2")).click();
         checkSearchResults(str);
-        driver.findElement(By.linkText("1")).click();
-        System.out.println("Количество результатов и время поиска: ");
-        System.out.println(driver.findElement(By.id("result-stats")).getText());
+
+
     }
 
     public void checkSearchResults(String str) {
