@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Task5">
+    <parameter name="browser" value="CHROME"/>
+    <parameter name="url" value="https://www.google.com/"/>
+    <test name="Task5">
+        <classes>
+            <class name="Task5.Task5"/>
+        </classes>
+    </test>
+
+</suite>
