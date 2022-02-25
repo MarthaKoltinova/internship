@@ -1,24 +1,27 @@
 package BaseObjects;
 
+import Properties.PropertyReader;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Properties;
+
 import static BaseObjects.DriverCreation.*;
 import static BaseObjects.DriverCreation.createDriver;
 
 public class BaseTest {
     protected WebDriver driver;
     protected ITestContext context;
-    private String browserName;
+    protected Properties property;
 
     @BeforeTest
     public void precondition(ITestContext context) {
         this.context = context;
-        this.browserName = context.getSuite().getParameter("browser") == null ? System.getProperty("browser") : context.getSuite().getParameter("browser");
-        createDriver(browserName == null ? "chrome" : browserName);
-        this.driver = getDriver();
+        property = new PropertyReader(context.getSuite().getParameter("property")).getProperties();
+        createDriver(property.getProperty("browser") == null ? "chrome" : property.getProperty("browser"));
+        driver = getDriver();
     }
 
     protected <T> T get(Class<T> page) {

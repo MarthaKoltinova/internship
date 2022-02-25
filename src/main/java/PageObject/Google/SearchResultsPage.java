@@ -5,37 +5,39 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SearchResultsPage extends BasePage {
     private By resultStatus = By.id("result-stats");
+    private By searchResults = By.xpath("//div[contains(@class, g)]//div[@data-hveid]//a/h3");
 
     private By buttonPageNumber(Integer number) {
         return By.linkText(number.toString());
     }
 
-    public SearchResultsPage checkSearchResults(String str) {
-        driver.findElements(By.xpath("//div[contains(@class, g)]//div[@data-hveid]//a/h3")).forEach(element -> {
-            String actual = element.getText().toLowerCase();
-            String expected = str.toLowerCase();
-            System.out.println("Check that " + expected + " contains in " + actual);
-            Assert.assertTrue(actual.contains(expected), "Check that " + expected + " contains in " + actual);
+    public List<String> getSearchResults() {
+        List<String> results = new ArrayList<>();
+        driver.findElements(searchResults).forEach(element -> {
+            String result = element.getText().toLowerCase();
+            results.add(result);
         });
-        return this;
+        return results;
     }
 
-    public SearchResultsPage countAndTime() {
-        System.out.println("Количество результатов поиска: ");
+    public String getResultCount() {
         List<String> results = Arrays.asList(driver.findElement(resultStatus).getText().split("\\(")[0].split(" "));
-        String data = results.stream()
+        String result = results.stream()
                 .filter(val -> results.indexOf(val) != 0 && results.indexOf(val) != 1)
-                .collect(Collectors.joining(" "));
-        System.out.println(data);
-        System.out.println("Время поиска результатов: ");
-        System.out.println(driver.findElement(resultStatus).getText().split("\\(")[1].replace(")", " "));
-        return this;
+                .collect(Collectors.joining());
+        return result;
+    }
+
+    public String getResultTime() {
+        String result = driver.findElement(resultStatus).getText().split("\\(")[1].replace(")", " ");
+        return result;
     }
 
     public SearchResultsPage clickOnPageNumber(Integer number) {
