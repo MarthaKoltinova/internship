@@ -1,10 +1,13 @@
 package BaseObjects;
 
+import PageObject.BasePage;
 import Properties.PropertyReader;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
@@ -15,6 +18,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected ITestContext context;
     protected Properties property;
+    protected Logger logger = Logger.getLogger(BaseTest.class);
 
     @BeforeTest
     public void precondition(ITestContext context) {

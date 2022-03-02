@@ -19,6 +19,7 @@ public class SearchResultsPage extends BasePage {
     }
 
     public List<String> getSearchResults() {
+        logger.debug("Get search results ");
         List<String> results = new ArrayList<>();
         driver.findElements(searchResults).forEach(element -> {
             String result = element.getText().toLowerCase();
@@ -28,6 +29,7 @@ public class SearchResultsPage extends BasePage {
     }
 
     public String getResultCount() {
+        logger.debug("Get Result Count ");
         List<String> results = Arrays.asList(driver.findElement(resultStatus).getText().split("\\(")[0].split(" "));
         String result = results.stream()
                 .filter(val -> results.indexOf(val) != 0 && results.indexOf(val) != 1)
@@ -36,11 +38,13 @@ public class SearchResultsPage extends BasePage {
     }
 
     public String getResultTime() {
+        logger.debug("Get result time ");
         String result = driver.findElement(resultStatus).getText().split("\\(")[1].replace(")", " ");
         return result;
     }
 
     public SearchResultsPage clickOnPageNumber(Integer number) {
+        logger.debug("Click on page number " + number);
         driver.findElement(buttonPageNumber(number));
         return this;
     }
