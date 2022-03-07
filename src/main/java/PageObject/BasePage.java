@@ -1,6 +1,7 @@
 package PageObject;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public abstract class BasePage {
@@ -11,5 +12,9 @@ public abstract class BasePage {
         this.driver = driver;
     }
 
-
+    protected BasePage click(By element) {
+        logger.debug("Click on " + element);
+        driver.findElement(element).click();
+        return this;
+    }
 }

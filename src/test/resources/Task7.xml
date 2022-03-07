@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Task7">
+    <parameter name="property" value="onliner"/>
+    <parameter name="str" value="HONOR"/>
+    <parameter name="resultCount" value="100500"/>
+    <test name="Task7">
+        <classes>
+            <class name="Task7.Task7"/>
+        </classes>
+    </test>
+
+</suite>
