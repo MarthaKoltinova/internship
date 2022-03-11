@@ -12,8 +12,6 @@ public class Task4 extends BaseTest {
     @BeforeTest
     public void setUp() {
         driver.get(context.getSuite().getParameter("url"));
-
-
     }
 
     @Test
@@ -26,8 +24,6 @@ public class Task4 extends BaseTest {
         System.out.println(driver.findElement(By.id("result-stats")).getText());
         driver.findElement(By.linkText("2")).click();
         checkSearchResults(str);
-
-
     }
 
     public void checkSearchResults(String str) {
