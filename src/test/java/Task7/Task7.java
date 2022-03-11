@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class Task7 extends BaseTest {
 
-    @Parameters("str")
+    @Parameters({"str"})
     @Test(priority = 1)
     public void searchInCatalog() {
         logger.info("Test searchInCatalog started");
@@ -15,11 +15,15 @@ public class Task7 extends BaseTest {
                 .open(property.getProperty("url"))
                 .clickCatalog();
         get(CatalogPage.class)
-                .clickOnMobileTabs();
+                .clickOnTabCatagory(Catagory.ELECTRONICS)
+                .clickOnMobileTab()
+                .clickOnIteam(Iteam.PHONES);
         get(MobilePhonesPage.class)
                 .verifyTitle()
-                .clickOnCheckbox();
-        //   .checkSearchResults(str);
+                .clickOnCheckbox(CheckboxIteams.HONOR)
+                .sleep(10);
+        get(MobilePhonesPage.class)
+                .checkSearchResults("HONOR");
         logger.info("Test searchInCatalog finished");
     }
 
@@ -37,6 +41,7 @@ public class Task7 extends BaseTest {
         logger.info("Test calalogSearch finished");
     }
 
+    @Parameters({"subCatagoryName", "catagoryName", "iteamName"})
     @Test(priority = 3)
     public void addItemToCart() {
         logger.info("Test addItemToCart  started");
@@ -44,15 +49,17 @@ public class Task7 extends BaseTest {
                 .open(property.getProperty("url"))
                 .clickCatalog();
         get(CatalogPage.class)
-                .clickOnGamesTabs();
+                .clickOnTabCatagory(Catagory.ELECTRONICS)
+                .clickOnTabSubCatagory(SubCatagory.VIDEO_GAMES)
+                .clickOnIteam(Iteam.GAMING_CONSOLS);
         get(GamingConsolesPage.class)
                 .verifyTitle()
-                .openAndAddToCard()
+                .AddToCard()
                 .verifyText()
                 .checkStatus()
                 .goToCard();
         get(CardPage.class)
-                .checkIteam();
+                .checkProduct();
         logger.info("Test addItemToCart finished");
     }
 }

@@ -7,15 +7,15 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class CardPage extends BasePage {
-    private By iteam = By.cssSelector(".cart-form__link.cart-form__link_primary.cart-form__link_base-alter");
+    private By product = By.cssSelector(".cart-form__link.cart-form__link_primary.cart-form__link_base-alter");
 
     public CardPage(WebDriver driver) {
         super(driver);
     }
 
-    public CardPage checkIteam() {
+    public CardPage checkProduct() {
         logger.debug("Check that iteam is present in the page");
-        Assert.assertTrue(driver.findElement(iteam).isDisplayed());
+        Assert.assertTrue(driver.findElement(product).isDisplayed());
         return this;
     }
 }

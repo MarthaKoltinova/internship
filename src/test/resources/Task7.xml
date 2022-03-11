@@ -3,7 +3,6 @@
 <suite name="Task7">
     <parameter name="property" value="onliner"/>
     <parameter name="str" value="HONOR"/>
-    <parameter name="resultCount" value="100500"/>
     <test name="Task7">
         <classes>
             <class name="Task7.Task7"/>

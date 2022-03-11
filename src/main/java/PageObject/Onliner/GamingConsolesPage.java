@@ -24,7 +24,7 @@ public class GamingConsolesPage extends BasePage {
         return this;
     }
 
-    public GamingConsolesPage openAndAddToCard() {
+    public GamingConsolesPage AddToCard() {
         logger.debug("Click on the first iteam");
         click(firstIteam);
         logger.debug("add to card iteam");
@@ -45,6 +45,7 @@ public class GamingConsolesPage extends BasePage {
         Assert.assertEquals(driver.findElement(inCard).getText(), "В корзине");
         return this;
     }
+
     public GamingConsolesPage goToCard() {
         logger.debug("go to card");
         click(card);

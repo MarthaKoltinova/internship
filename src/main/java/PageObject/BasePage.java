@@ -17,4 +17,12 @@ public abstract class BasePage {
         driver.findElement(element).click();
         return this;
     }
+
+    protected void sleep(long seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -7,12 +7,16 @@ import org.testng.Assert;
 
 public class MobilePhonesPage extends BasePage {
     private By title = By.tagName("h1");
-    private By checkbox = By.xpath("//*[@class='schema-filter__label']//span[text() ='Производитель']//ancestor::div[@class ='schema-filter__fieldset']//li//label[@class='schema-filter__checkbox-item']//*[text()='HONOR']");
     private By results = By.xpath("//div[contains(@class, g)]//a[@class='js-product-title-link']");
     private By entrance = By.cssSelector(".auth-bar__item.auth-bar__item--text");
 
     public MobilePhonesPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public void sleep(long seconds) {
+        super.sleep(seconds);
     }
 
     public MobilePhonesPage verifyTitle() {
@@ -21,9 +25,9 @@ public class MobilePhonesPage extends BasePage {
         return this;
     }
 
-    public MobilePhonesPage clickOnCheckbox() {
-        logger.debug("Click on checkbox Honor");
-        driver.findElement(checkbox).click();
+    public MobilePhonesPage clickOnCheckbox(CheckboxIteams checkboxIteams) {
+        logger.debug("Click on checkbox");
+        driver.findElement(By.xpath(checkboxIteams.getCheckboxIteams())).click();
         return this;
     }
 
@@ -33,7 +37,7 @@ public class MobilePhonesPage extends BasePage {
         return this;
     }
 
-  /*  public MobilePhonesPage checkSearchResults(String str) {
+    public MobilePhonesPage checkSearchResults(String str) {
         driver.findElements(results).forEach(element -> {
             String actual = element.getText();
             String expected = str;
@@ -41,6 +45,6 @@ public class MobilePhonesPage extends BasePage {
             Assert.assertTrue(actual.contains(expected), "Check that " + expected + " contains in " + actual);
         });
         return this;
-    }*/
+    }
 
 }

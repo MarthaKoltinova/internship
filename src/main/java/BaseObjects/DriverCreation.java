@@ -15,6 +15,7 @@ public class DriverCreation {
         if (driver.get() == null) {
             WebDriver webDriver = getInstance(DriverManagerType.valueOf(drivers.toUpperCase(Locale.ROOT))).create();
             webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+            webDriver.manage().window().maximize();
             driver.set(webDriver);
         }
     }
